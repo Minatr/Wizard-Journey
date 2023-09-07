@@ -60,11 +60,11 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 ![minimap](/ReadmeAssets/minimap.png)
 
-&emsp; In addition, I wanted add give some identity to the enemies of the map. So I decide to add some UI around them in order to improve the immersion of the player.
+&emsp; In addition, I wanted to add some identity to the enemies of the map. So I decide to add some UI around them in order to improve the immersion of the player.
 
 ![enemy_ui](/ReadmeAssets/werewolf_ui.png)
 
-
+&emsp; The more the project progressed and the more lag there was. I was scared my code wasn't optimized enough, but I found out what was the problem. When I created the project while following the first tutorial about 2.5D games, I've included the [Universal Render Pipeline](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@16.0/manual/index.html). It allows you to improve a lot your game graphics, the shader, the light, but it isn't yet optimized for mobile game (anyway, little mobile games don't need it, especially in my case). So I took it out from the project which allowed me to delete all lags and some useless storage.
 
 
 
