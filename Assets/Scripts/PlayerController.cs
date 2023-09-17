@@ -6,30 +6,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("REFERENCES")]
-
-    [SerializeField]
-    private LayerMask terrainLayer;
-
-    [SerializeField]
-    private Rigidbody rb;
-
-    [SerializeField]
-    private SpriteRenderer sr;
-
-    [SerializeField]
-    private FloatingJoystick joystick;
-
-    [SerializeField]
-    private Animator animator;
-
+    [SerializeField] private LayerMask terrainLayer;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private FloatingJoystick joystick;
+    [SerializeField] private Animator animator;
 
     [Header("STATS")]
-
-    [SerializeField]
-    private float speed;
-
-    [SerializeField]
-    private float groundDist;
+    [SerializeField] private float speed;
+    [SerializeField] private float groundDist;
 
 
     void Update()

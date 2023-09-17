@@ -7,26 +7,21 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     [Header("REFERENCES")]
+    [SerializeField] private Animator cameraJoueurAnimator;
+    [SerializeField] private Animator loadingScreenAnimator;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private Slider slider;
+    [SerializeField] private TextMeshProUGUI progressText;
 
-    [SerializeField]
-    private Animator cameraJoueurAnimator;
-
-    [SerializeField]
-    private Animator loadingScreenAnimator;
-
-    [SerializeField]
-    private GameObject loadingScreen;
-
-    [SerializeField]
-    private Slider slider;
-
-    [SerializeField]
-    private TextMeshProUGUI progressText;
-
+    private bool isLaunching = false;
 
     public void LoadCombat()
     {
-        StartCoroutine(LoadAsynchronouslyCombat());
+        if (!isLaunching)
+        {
+            StartCoroutine(LoadAsynchronouslyCombat());
+            isLaunching = true;
+        }
     }
 
     IEnumerator LoadAsynchronouslyCombat()
@@ -42,13 +37,35 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync("Combat");
-
+        
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
 
             slider.value = progress;
             progressText.text = progress * 100f + " %";
+
+            yield return null;
+        }
+    }
+    
+    public void LoadZone()
+    {
+        string zoneName = "Zone1";
+        StartCoroutine(LoadAsynchronouslyZone(zoneName));
+    }
+
+    IEnumerator LoadAsynchronouslyZone(string zoneName)
+    {
+        loadingScreen.SetActive(true);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(zoneName);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+
+            slider.value = progress;
 
             yield return null;
         }

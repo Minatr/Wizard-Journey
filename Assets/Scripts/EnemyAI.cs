@@ -7,16 +7,9 @@ using UnityEngine.Rendering;
 public class EnemyAI : MonoBehaviour
 {
     [Header("REFERENCES")]
-
-    [SerializeField]
-    private NavMeshAgent agent;
-
-    [SerializeField]
-    private Animator enemyANI;
-
-    [SerializeField]
-    private SpriteRenderer sr;
-
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator enemyANI;
+    [SerializeField] private SpriteRenderer sr;
     private Transform player;
     private Rigidbody playerRB;
     private Animator playerANI;
@@ -24,37 +17,18 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent enemyNMA;
     private LevelLoader levelLoader;
 
-
     [Header("STATS")]
-
-    [SerializeField]
-    private float walkSpeed;
-
-    [SerializeField]
-    private float chaseSpeed;
-
-    [SerializeField]
-    private float detectionRadius;
-
-    [SerializeField]
-    private float combatRadius;
-
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private float detectionRadius;
+    [SerializeField] private float combatRadius;
     private bool hasDestination;
 
-
     [Header("WANDERING PARAMETERS")]
-
-    [SerializeField]
-    private float wanderingWaitTimeMin;
-
-    [SerializeField]
-    private float wanderingWaitTimeMax;
-
-    [SerializeField]
-    private float wanderingDistanceMin;
-
-    [SerializeField]
-    private float wanderingDistanceMax;
+    [SerializeField] private float wanderingWaitTimeMin;
+    [SerializeField] private float wanderingWaitTimeMax;
+    [SerializeField] private float wanderingDistanceMin;
+    [SerializeField] private float wanderingDistanceMax;
 
 
     void Start()
@@ -65,7 +39,7 @@ public class EnemyAI : MonoBehaviour
         playerANI = player.GetComponentInChildren<Animator>();
         enemyRB = transform.GetComponent<Rigidbody>();
         enemyNMA = transform.GetComponent<NavMeshAgent>();
-        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        levelLoader = GameObject.Find("GameManager").GetComponent<LevelLoader>();
     }
 
     void Update()

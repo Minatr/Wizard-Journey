@@ -1122,7 +1122,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656544389}
   m_CullTransparentMesh: 1
---- !u!1 &803848006
+--- !u!1 &700493095
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1130,22 +1130,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 803848008}
-  - component: {fileID: 803848007}
+  - component: {fileID: 700493098}
+  - component: {fileID: 700493097}
+  - component: {fileID: 700493096}
   m_Layer: 0
-  m_Name: LevelLoader
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &803848007
+--- !u!114 &700493096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803848006}
+  m_GameObject: {fileID: 700493095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6c9e79b0073b649b5bff14c06886b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &700493097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700493095}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f47d889743e10d04ca625829049f33fe, type: 3}
@@ -1156,16 +1169,16 @@ MonoBehaviour:
   loadingScreen: {fileID: 2012255977}
   slider: {fileID: 1068828}
   progressText: {fileID: 1941146911}
---- !u!4 &803848008
+--- !u!4 &700493098
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803848006}
+  m_GameObject: {fileID: 700493095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 55.37759, y: -4.131792, z: 26.380886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1694,8 +1707,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 991260722}
-  - {fileID: 2012255978}
   - {fileID: 602021168}
+  - {fileID: 2012255978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1840,6 +1853,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2848,7 +2868,7 @@ PrefabInstance:
     - target: {fileID: 7742214704235733852, guid: 0b361ec3732dcde4a80842b7d5afea37,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.75
+      value: 23.26
       objectReference: {fileID: 0}
     - target: {fileID: 7742214704235733852, guid: 0b361ec3732dcde4a80842b7d5afea37,
         type: 3}
@@ -2858,7 +2878,7 @@ PrefabInstance:
     - target: {fileID: 7742214704235733852, guid: 0b361ec3732dcde4a80842b7d5afea37,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.14
+      value: 14.45
       objectReference: {fileID: 0}
     - target: {fileID: 7742214704235733852, guid: 0b361ec3732dcde4a80842b7d5afea37,
         type: 3}
@@ -2904,14 +2924,13 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 803848008}
   - {fileID: 410087041}
   - {fileID: 330585546}
   - {fileID: 1275945713}
   - {fileID: 2029491489777766672}
   - {fileID: 33289033}
-  - {fileID: 1711355961}
   - {fileID: 1123218738}
+  - {fileID: 1711355961}
   - {fileID: 6562315922088574072}
   - {fileID: 156524040}
   - {fileID: 998297886}
@@ -2922,3 +2941,4 @@ SceneRoots:
   - {fileID: 459119673}
   - {fileID: 1536557749}
   - {fileID: 1998314323}
+  - {fileID: 700493098}
