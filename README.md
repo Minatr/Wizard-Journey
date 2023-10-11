@@ -3,7 +3,7 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.0.4](#0.0.4)  |  04/09/2023 |
+| [0.1.1](#0.1.1)  |  11/10/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
@@ -12,7 +12,9 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 | Version | What's new | Changes | Date |
 | :-----: | ---------- | ------- | :--: |
-| [0.0.4](#0.0.4) | <ul><li>__MiniMap__</li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
+| [0.1.1](#0.1.1) | <ul><li> Welcome scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
+| [0.1.0](#0.1.0) | <ul><li> __Fight__ system (zone, animations, visuals, ...) </li></ul> | | 16/09/2023 |
+| [0.0.4](#0.0.4) | <ul><li> __MiniMap__ </li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
 | [0.0.3](#0.0.3) | <ul><li> __Battle__ starting when touching enemies (transitions, animations)</li></ul> | <ul><li> __Enemies__ (movements, detection system improved)</li><li> __Map__ (decoration, mountains)</li></ul> | 25/08/2023 |
 | [0.0.2](#0.0.2) | <ul><li> __Enemies__ (visuals, movements, animations)</li><li>Enemy's __AI__ (wandering mode, chasing mode)</li></ul> | | 18/08/2023 |
 | [0.0.1](#0.0.1) | <ul><li> __Map__ </li><li> __Main character__ (animations, movements)</li><li> __Joystick__ </li></ul> | | 31/07/2023 |
@@ -67,4 +69,24 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 &emsp; The more the project progressed and the more lag there was. I was scared my code wasn't optimized enough, but I found out what was the problem. When I created the project while following the first tutorial about 2.5D games, I've included the [Universal Render Pipeline](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@16.0/manual/index.html). It allows you to improve a lot your game graphics, the shader, the light, but it isn't yet optimized for mobile game (anyway, little mobile games don't need it, especially in my case). So I took it out from the project which allowed me to delete all lags and some useless storage.
 
 
+### <h3 id="0.1.0">Version 0.1.0 :</h3>
 
+&emsp; Here is the first major update for my game. A whole turn based fight system. 
+
+![enemy_ui](/ReadmeAssets/fight_screen.png)
+
+&emsp; This is for now very simple : you can either choose to make a simple attack or to use magic in order to make more damages. However, you gonna spend some mana while doing magic, and you can recover it only with doing simple attacks.
+
+![enemy_ui](/ReadmeAssets/UI_animations.png)
+![enemy_ui](/ReadmeAssets/mana_ui.png)
+
+&emsp; Finally, you can win or lose the figth, if you make the wrong choices ! At the end, you can actually see only one statistic for the fight (the chrono), but it'll be improved in the next updates.
+
+![enemy_ui](/ReadmeAssets/victory_panel.png)
+
+> I have to say that I'm very proud of myself, I didn't know I could make something that cool (I hope it is). It gives me a lot of motivation for the project and simply my career in game dev !
+
+
+### <h3 id="0.1.1">Version 0.1.1 :</h3>
+
+&emsp; As I was adding more and more stuff to my game, I knew the more I would wait, the more it would be to implement a save system. So that's what the update is about : the game now remember the last scene you played, your last position and your current enemy if you have one. They aren't that many things saved actually, cause I keep it for a next version with a whole stat system (experience, attack, defense, HP, ...).
