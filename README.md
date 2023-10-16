@@ -27,7 +27,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 &emsp; The idea came after looking a [video](https://youtu.be/cqNBA9Pslg8?si=06BDQ_gbVYugMbp4) about game in 2.5D. 2D sprite in 3D world, it's that simple. There has been a long time since i wanted to start developing my first mobile game. The time had come.
 
 
-### <h3 id="0.0.1">Version 0.0.1 :</h3>
+### <h3>Version 0.0.1 :</h3>
 
 &emsp; I started with creating the map with the Unity's terrain tool. Just a plane with a little path and some textures found on the [Unity Asset Store](https://assetstore.unity.com/packages/2d/textures-materials/25-free-stylized-textures-grass-ground-floors-walls-more-241895), enough for the moment.
 
