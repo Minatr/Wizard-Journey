@@ -3,16 +3,17 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.1.1](#0.1.1)  |  11/10/2023 |
+| [0.1.2](#0.1.2)  |  16/10/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
 
 ## Update informations
 
-| Version | What's new | Changes | Date |
-| :-----: | ---------- | ------- | :--: |
-| [0.1.1](#0.1.1) | <ul><li> Welcome scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
+| Version | What's new | Improvements | Date |
+| :-----: | ---------- | ------------ | :--: |
+| [0.1.2](#0.1.2) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
+| [0.1.1](#0.1.1) | <ul><li> Welcome Scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
 | [0.1.0](#0.1.0) | <ul><li> __Fight__ system (zone, animations, visuals, ...) </li></ul> | | 16/09/2023 |
 | [0.0.4](#0.0.4) | <ul><li> __MiniMap__ </li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
 | [0.0.3](#0.0.3) | <ul><li> __Battle__ starting when touching enemies (transitions, animations)</li></ul> | <ul><li> __Enemies__ (movements, detection system improved)</li><li> __Map__ (decoration, mountains)</li></ul> | 25/08/2023 |
@@ -90,3 +91,12 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 ### <h3 id="0.1.1">Version 0.1.1 :</h3>
 
 &emsp; As I was adding more and more stuff to my game, I knew the more I would wait, the more it would be to implement a save system. So that's what the update is about : the game now remember the last scene you played, your last position and your current enemy if you have one. They aren't that many things saved actually, cause I keep it for a next version with a whole stat system (experience, attack, defense, HP, ...).
+
+
+### <h3 id="0.1.2">Version 0.1.2 :</h3>
+
+&emsp; This update is a little fix and improvement of the last version that added an efficient but incomplete save system. Now, after having upgraded and transformed the SaveSystem in a singleton (as I'm currently learning design patterns, why not using them when it's possible to), the game remember all the ennemies on the map and their position. If you kill one or if one beats you, he disappears from the area. The map creates new enemies if you leave to another area and come back (the fight area doesn't count). Unfortunately, they are no other area for now, that may be one of the next step ...
+
+
+
+
