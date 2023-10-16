@@ -18,7 +18,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 | [0.0.4](#0.0.4) | <ul><li> __MiniMap__ </li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
 | [0.0.3](#0.0.3) | <ul><li> __Battle__ starting when touching enemies (transitions, animations)</li></ul> | <ul><li> __Enemies__ (movements, detection system improved)</li><li> __Map__ (decoration, mountains)</li></ul> | 25/08/2023 |
 | [0.0.2](#0.0.2) | <ul><li> __Enemies__ (visuals, movements, animations)</li><li>Enemy's __AI__ (wandering mode, chasing mode)</li></ul> | | 18/08/2023 |
-| [0.0.1](#0.0.1) | <ul><li> __Map__ </li><li> __Main character__ (animations, movements)</li><li> __Joystick__ </li></ul> | | 31/07/2023 |
+| [0.0.1](#version-001-) | <ul><li> __Map__ </li><li> __Main character__ (animations, movements)</li><li> __Joystick__ </li></ul> | | 31/07/2023 |
 
 ---
 
