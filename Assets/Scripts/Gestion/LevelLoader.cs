@@ -14,16 +14,16 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private TextMeshProUGUI progressText;
 
     [Header("SAVE REFERENCES")]
-    [SerializeField] private SaveSystem saveSystem;
     [SerializeField] private Transform player;
 
     private bool isLaunching = false;
 
-    public void LoadCombat(string enemyName, int enemyLevel)
+    public void LoadCombat(EnemyAI enemyAI)
     {
         if (!isLaunching)
         {
-            saveSystem.SaveData(player.position, enemyName, enemyLevel);
+            enemyAI.attacking = true;
+            SaveSystem.instance.SaveData(SceneManager.GetActiveScene().buildIndex, player.position, enemyAI.enemyName, enemyAI.enemyLevel, SaveSystem.instance.getAllEnemies());
             StartCoroutine(LoadAsynchronouslyCombat());
             isLaunching = true;
         }
@@ -54,13 +54,16 @@ public class LevelLoader : MonoBehaviour
         }
     }
     
-    public void LoadZone()
+    public void LoadZone(int zoneName)
     {
-        string zoneName = "Zone1";
+        SaveSystem.instance.SaveGame();
+        if (zoneName == -1) zoneName = SaveSystem.currentSave.previousScene;
+        // On passe le numéro de scène précédente à celui de la Scène de Combat.
+        SaveSystem.currentSave.previousScene = 1;
         StartCoroutine(LoadAsynchronouslyZone(zoneName));
     }
 
-    IEnumerator LoadAsynchronouslyZone(string zoneName)
+    IEnumerator LoadAsynchronouslyZone(int zoneName)
     {
         loadingScreen.SetActive(true);
 

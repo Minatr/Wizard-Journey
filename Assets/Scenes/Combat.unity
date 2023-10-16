@@ -1015,11 +1015,11 @@ MonoBehaviour:
       - m_Target: {fileID: 501890926}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadZone
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2729,6 +2729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501890925}
   - component: {fileID: 501890926}
+  - component: {fileID: 501890927}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2768,8 +2769,19 @@ MonoBehaviour:
   loadingScreen: {fileID: 1588438707}
   slider: {fileID: 601056309}
   progressText: {fileID: 271083221}
-  saveSystem: {fileID: 1454087466}
-  player: {fileID: 0}
+  player: {fileID: 1330083338}
+--- !u!114 &501890927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501890924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6c9e79b0073b649b5bff14c06886b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &503522916
 GameObject:
   m_ObjectHideFlags: 0
@@ -5156,11 +5168,11 @@ MonoBehaviour:
       - m_Target: {fileID: 501890926}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadZone
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6023,86 +6035,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424434548}
   m_CullTransparentMesh: 1
---- !u!1001 &1454087465
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 914471997173813340, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_Name
-      value: SaveSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.1941094
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -28.870472
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 212.34239
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482425343868524127, guid: 649468fc7abc2774fb8371cd34f0601f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 649468fc7abc2774fb8371cd34f0601f, type: 3}
---- !u!114 &1454087466 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7874546587368336163, guid: 649468fc7abc2774fb8371cd34f0601f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1454087465}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6c9e79b0073b649b5bff14c06886b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1454217267
 GameObject:
   m_ObjectHideFlags: 0
@@ -8236,7 +8168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b254b118d58694f95886c57f60405a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveSystem: {fileID: 1454087466}
   victoryScreen: {fileID: 198010497}
   defeatScreen: {fileID: 1188220303}
   chronoTextWin: {fileID: 1021846245}
@@ -8254,6 +8185,8 @@ MonoBehaviour:
   buttonMagic: {fileID: 678447204}
   animatorTextDamagePlayer: {fileID: 128559830}
   textDamagePlayer: {fileID: 128559828}
+  attackDamage: 10
+  magicDamage: 50
   sliderVieEnnemi: {fileID: 1648546540}
   healthBarEnemy: {fileID: 1648546535}
   animatorTextDamageEnemy: {fileID: 348501227}
@@ -9526,4 +9459,3 @@ SceneRoots:
   - {fileID: 1287660959}
   - {fileID: 1831794040}
   - {fileID: 501890925}
-  - {fileID: 1454087465}

@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour
     public string enemyName;
     public int enemyLevel;
     private bool hasDestination;
+    [HideInInspector] public bool attacking = false;
 
     [Header("WANDERING PARAMETERS")]
     [SerializeField] private float wanderingWaitTimeMin;
@@ -45,7 +46,11 @@ public class EnemyAI : MonoBehaviour
         enemyNMA = transform.GetComponent<NavMeshAgent>();
         levelLoader = GameObject.Find("GameManager").GetComponent<LevelLoader>();
 
-        ChangeLevel(Random.Range(1, 11));
+        // On définit les niveaux des ennemis à chaque fois que la zone est nouvelle
+        if (SaveSystem.currentSave == null || SaveSystem.currentSave.previousScene != 1)
+        {
+            ChangeLevel(Random.Range(1, 11));
+        }
     }
 
     void Update()
@@ -63,7 +68,7 @@ public class EnemyAI : MonoBehaviour
             enemyNMA.enabled = true;     // La seule solution potable reste donc de désactiver et réactiver le NMA pour ne pas avoir d'erreurs.
 
             // Lancement du combat
-            levelLoader.LoadCombat(enemyName, enemyLevel);
+            levelLoader.LoadCombat(this);
         }
 
         if (Vector3.Distance(player.position, transform.position) < detectionRadius)

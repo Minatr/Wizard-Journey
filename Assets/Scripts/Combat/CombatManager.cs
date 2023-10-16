@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class CombatManager : MonoBehaviour
 {
-    [Header("SAVE REFERENCES")]
-    [SerializeField] private SaveSystem saveSystem;
-
     [Header("UI REFERENCES")]
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private GameObject defeatScreen;
@@ -29,6 +26,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject buttonMagic;
     [SerializeField] private Animator animatorTextDamagePlayer;
     [SerializeField] private TextMeshProUGUI textDamagePlayer;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float magicDamage;
 
     [Header("ENEMY REFERENCES")]
     [SerializeField] private Slider sliderVieEnnemi;
@@ -58,8 +57,8 @@ public class CombatManager : MonoBehaviour
 
     private void Awake()
     {
-        SavedData savedData = saveSystem.LoadData();
-        saveSystem.SaveData(new Vector3(savedData.playerPosx, savedData.playerPosy, savedData.playerPosz), savedData.enemyName, savedData.enemyLevel);
+        SavedData savedData = SaveSystem.currentSave;
+        SaveSystem.instance.SaveGame();
 
         textEnemyLevel.text = savedData.enemyLevel.ToString();
 
@@ -103,11 +102,11 @@ public class CombatManager : MonoBehaviour
     {
         if (magic)
         {
-            damages = 20f;
+            damages = magicDamage;
         }
         else
         {
-            damages = 10f;
+            damages = attackDamage;
         }
 
         textDamageEnemy.text = "- " + damages;

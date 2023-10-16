@@ -5,22 +5,60 @@ using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
-    public void SaveData(Vector3 player, string enemyName, int enemyLevel)
+    public static SaveSystem instance;
+    public static SavedData currentSave;
+
+    private void Awake()
     {
-        SavedData savedData = new SavedData
+        instance = this;
+    }
+
+    /**
+     * Effectue toute la logique liée à de nouvelles valeurs à sauvegarder sur une zone d'exploration
+     */
+    public void SaveData(int previousScene, Vector3 player, string enemyName, int enemyLevel, GameObject[] allEnemies)
+    {
+        // Transformation des données des ennemis pour le Json
+        List<SavedEnemyData> tempList = new List<SavedEnemyData>();
+        SavedEnemyData temp;
+        foreach (var enemy in allEnemies)
+        {
+            temp = new SavedEnemyData();
+            temp.name = enemy.GetComponent<EnemyAI>().enemyName;
+            temp.level = enemy.GetComponent<EnemyAI>().enemyLevel;
+            temp.posx = enemy.transform.position.x;
+            temp.posy = enemy.transform.position.y;
+            temp.posz = enemy.transform.position.z;
+            temp.attacking = enemy.GetComponent<EnemyAI>().attacking;
+            tempList.Add(temp);
+        }
+
+        currentSave = new SavedData
         {
             actualScene = SceneManager.GetActiveScene().buildIndex,
+            previousScene = previousScene,
             playerPosx = player.x,
             playerPosy = player.y,
             playerPosz = player.z,
             enemyName = enemyName,
-            enemyLevel = enemyLevel
+            enemyLevel = enemyLevel,
+            enemyDataList = tempList
         };
 
-        string jsonData = JsonUtility.ToJson(savedData);
+        SaveGame();
+    }
+
+    /**
+     * Sauvegarde la partie, on ne met à jour que l'index de scène
+     */
+    public void SaveGame()
+    {
+        currentSave.actualScene = SceneManager.GetActiveScene().buildIndex;
+        string jsonData = JsonUtility.ToJson(currentSave);
         string filePath = Application.persistentDataPath + "/SavedData.json";
         System.IO.File.WriteAllText(filePath, jsonData);
     }
+
 
     public SavedData LoadData()
     {
@@ -30,6 +68,7 @@ public class SaveSystem : MonoBehaviour
         {
             string jsonData = System.IO.File.ReadAllText(filePath);
             SavedData savedData = JsonUtility.FromJson<SavedData>(jsonData);
+            currentSave = savedData;
             return savedData;
         }
         else
@@ -37,12 +76,33 @@ public class SaveSystem : MonoBehaviour
             return null;
         }
     }
+
+    public GameObject[] getAllEnemies()
+    {
+        // On récupère tous les GameObjects de la scène
+        GameObject[] allWerewolves = FindObjectsOfType<GameObject>();
+        List<GameObject> werewolvesWithEnemyIA = new List<GameObject>();
+
+        foreach (GameObject werewolf in allWerewolves)
+        {
+            // On regarde si ce sont des ennemis
+            EnemyAI enemyScript = werewolf.GetComponent<EnemyAI>();
+            if (enemyScript != null)
+            {
+                werewolvesWithEnemyIA.Add(werewolf);
+            }
+        }
+
+        // On obtient la liste de tous les ennemis présents dans le zone actuelle
+        return werewolvesWithEnemyIA.ToArray();
+    }
 }
 
 public class SavedData
 {
     // Scene informations
     public int actualScene;
+    public int previousScene;
 
     // Player informations
     public float playerPosx;
@@ -52,4 +112,16 @@ public class SavedData
     // Enemy informations
     public string enemyName;
     public int enemyLevel;
+    public List<SavedEnemyData> enemyDataList;
+}
+
+[System.Serializable]
+public class SavedEnemyData
+{
+    public string name;
+    public int level;
+    public float posx;
+    public float posy;
+    public float posz;
+    public bool attacking;
 }

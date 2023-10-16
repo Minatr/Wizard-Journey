@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class StartGame : MonoBehaviour
 {
     [Header("REFERENCES")]
-    [SerializeField] private SaveSystem saveSystem;
     [SerializeField] private TextMeshProUGUI touchToStart;
 
     [Header("ZONE TRANSITION REFERENCES")]
@@ -30,7 +29,7 @@ public class StartGame : MonoBehaviour
 
     private void Start()
     {
-        savedData = saveSystem.LoadData();
+        savedData = SaveSystem.instance.LoadData();
         if (savedData != null)
         {
             sceneToLoad = savedData.actualScene;
