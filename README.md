@@ -3,7 +3,7 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.1.2](#0.1.2)  |  16/10/2023 |
+| [0.1.2](#version-012-)  |  16/10/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
@@ -12,12 +12,12 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 | Version | What's new | Improvements | Date |
 | :-----: | ---------- | ------------ | :--: |
-| [0.1.2](#0.1.2) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
-| [0.1.1](#0.1.1) | <ul><li> Welcome Scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
-| [0.1.0](#0.1.0) | <ul><li> __Fight__ system (zone, animations, visuals, ...) </li></ul> | | 16/09/2023 |
-| [0.0.4](#0.0.4) | <ul><li> __MiniMap__ </li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
-| [0.0.3](#0.0.3) | <ul><li> __Battle__ starting when touching enemies (transitions, animations)</li></ul> | <ul><li> __Enemies__ (movements, detection system improved)</li><li> __Map__ (decoration, mountains)</li></ul> | 25/08/2023 |
-| [0.0.2](#0.0.2) | <ul><li> __Enemies__ (visuals, movements, animations)</li><li>Enemy's __AI__ (wandering mode, chasing mode)</li></ul> | | 18/08/2023 |
+| [0.1.2](#version-012-) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
+| [0.1.1](#version-011-) | <ul><li> Welcome Scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
+| [0.1.0](#version-010-) | <ul><li> __Fight__ system (zone, animations, visuals, ...) </li></ul> | | 16/09/2023 |
+| [0.0.4](#version-001-) | <ul><li> __MiniMap__ </li><li>__Names__ and __Levels__ of the map's enemies</li></ul> | <ul><li>Project __optimization__ (removed URP)</li><li>Fixed __Joystick__ first touch</li></ul> | 04/09/2023 |
+| [0.0.3](#version-003-) | <ul><li> __Battle__ starting when touching enemies (transitions, animations)</li></ul> | <ul><li> __Enemies__ (movements, detection system improved)</li><li> __Map__ (decoration, mountains)</li></ul> | 25/08/2023 |
+| [0.0.2](#version-002-) | <ul><li> __Enemies__ (visuals, movements, animations)</li><li>Enemy's __AI__ (wandering mode, chasing mode)</li></ul> | | 18/08/2023 |
 | [0.0.1](#version-001-) | <ul><li> __Map__ </li><li> __Main character__ (animations, movements)</li><li> __Joystick__ </li></ul> | | 31/07/2023 |
 
 ---
