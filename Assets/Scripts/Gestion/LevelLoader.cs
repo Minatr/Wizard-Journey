@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
         if (!isLaunching)
         {
             enemyAI.attacking = true;
-            SaveSystem.instance.SaveData(SceneManager.GetActiveScene().buildIndex, player.position, enemyAI.enemyName, enemyAI.enemyLevel, SaveSystem.instance.getAllEnemies());
+            SaveSystem.instance.SaveData(SceneManager.GetActiveScene().name, player.position, enemyAI.enemyName, enemyAI.enemyLevel, SaveSystem.instance.getAllEnemies());
             StartCoroutine(LoadAsynchronouslyCombat());
             isLaunching = true;
         }
@@ -31,11 +31,11 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsynchronouslyCombat()
     {
+        loadingScreen.SetActive(true);
+
         cameraJoueurAnimator.SetTrigger("StartCombatTransition");
 
         yield return new WaitForSeconds(1f);
-
-        loadingScreen.SetActive(true);
 
         loadingScreenAnimator.SetTrigger("CombatTransition");
 
@@ -54,16 +54,24 @@ public class LevelLoader : MonoBehaviour
         }
     }
     
-    public void LoadZone(int zoneName)
+    public void LoadZone(string zoneName)
     {
         SaveSystem.instance.SaveGame();
-        if (zoneName == -1) zoneName = SaveSystem.currentSave.previousScene;
-        // On passe le numéro de scène précédente à celui de la Scène de Combat.
-        SaveSystem.currentSave.previousScene = 1;
+        if (zoneName == "")
+        {
+            // Appel de la fonction à la fin d'un combat
+            zoneName = SaveSystem.currentSave.previousScene;
+            SaveSystem.currentSave.previousScene = "Combat";
+        }
+        else
+        {
+            // Appel de la fonction depuis une zone
+            SaveSystem.currentSave.previousScene = SaveSystem.currentSave.actualScene;
+        }
         StartCoroutine(LoadAsynchronouslyZone(zoneName));
     }
 
-    IEnumerator LoadAsynchronouslyZone(int zoneName)
+    IEnumerator LoadAsynchronouslyZone(string zoneName)
     {
         loadingScreen.SetActive(true);
 

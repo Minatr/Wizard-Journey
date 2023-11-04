@@ -12,11 +12,12 @@ public class AutoSave : MonoBehaviour
         SavedData savedData = SaveSystem.currentSave;
         if (savedData != null)
         {
-            player.position = new Vector3(savedData.playerPosx, savedData.playerPosy, savedData.playerPosz);
+            if (savedData.previousScene != "Combat") player.position = new Vector3(10, 2.7f, 10);
+            else player.position = new Vector3(savedData.playerPosx, savedData.playerPosy, savedData.playerPosz);
         }
         else
         {
-            SaveSystem.instance.SaveData(-1, player.position, "", 0, SaveSystem.instance.getAllEnemies());
+            SaveSystem.instance.SaveData("", player.position, "", 0, SaveSystem.instance.getAllEnemies());
         }
 
         StartCoroutine(autoSave());

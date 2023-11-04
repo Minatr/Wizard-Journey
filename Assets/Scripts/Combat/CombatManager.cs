@@ -28,6 +28,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDamagePlayer;
     [SerializeField] private float attackDamage;
     [SerializeField] private float magicDamage;
+    [SerializeField] private ParticleSystem particleSystemLightning;
 
     [Header("ENEMY REFERENCES")]
     [SerializeField] private Slider sliderVieEnnemi;
@@ -212,19 +213,11 @@ public class CombatManager : MonoBehaviour
         buttonMagic.GetComponent<Button>().enabled = false;
         animatorTextDamageEnemy.ResetTrigger("Damage");
 
-        if (magic)
-        {
-            manaCostText.text = "-2";
-            manaCostAnimator.SetTrigger("mana");
-            RemoveMana(2);
-            yield return new WaitForSeconds(0.4f);
-            manaCostAnimator.ResetTrigger("mana");
-        }
-        canvasPlayer.SetActive(false);
-
         // S'il s'agit d'une attaque au corps à corps
-        if (true)
+        if (!magic)
         {
+            canvasPlayer.SetActive(false);
+
             playerDestinationAttack = new Vector3(63.9f, 6.27f, 28f);
 
             // On active la course du sprite
@@ -249,9 +242,11 @@ public class CombatManager : MonoBehaviour
 
             RemoveEnemyHealth(magic);
 
-            enemyAnimator.SetTrigger("Hurt");
+            enemyAnimator.SetBool("Hurt", true);
 
             yield return new WaitForSeconds(0.4f);
+
+            enemyAnimator.SetBool("Hurt", false);
 
             // On prépare les données pour renvoyer le joueur à sa place d'origine
             playerDestinationAttack = new Vector3(54.11f, 6.27f, 21.35f);
@@ -275,7 +270,30 @@ public class CombatManager : MonoBehaviour
         // S'il s'agit d'une attaque à distance
         else
         {
+            // Animation de consommation de mana
+            manaCostText.text = "-2";
+            manaCostAnimator.SetTrigger("mana");
+            RemoveMana(2);
+            yield return new WaitForSeconds(0.4f);
+            manaCostAnimator.ResetTrigger("mana");
+            
+            canvasPlayer.SetActive(false);
 
+            // Lancement de l'attaque
+            animatorPlayer.SetTrigger("Magic");
+            yield return new WaitForSeconds(1);
+
+            particleSystemLightning.Play();
+            yield return new WaitForSeconds(0.1f);
+            enemyAnimator.SetBool("Hurt", true);
+            yield return new WaitForSeconds(1.8f);
+            particleSystemLightning.Stop();
+            yield return new WaitForSeconds(0.2f);
+
+            RemoveEnemyHealth(magic);
+            yield return new WaitForSeconds(0.2f);
+            enemyAnimator.SetBool("Hurt", false);
+            yield return new WaitForSeconds(0.3f);
         }
 
         if (sliderVieEnnemi.value == 0f)

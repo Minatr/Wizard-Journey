@@ -25,7 +25,7 @@ public class StartGame : MonoBehaviour
     
     private bool launched = false;
 
-    private int sceneToLoad;
+    private string sceneToLoad;
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class StartGame : MonoBehaviour
         }
         else
         {
-            sceneToLoad = 2;
+            sceneToLoad = "Zone1";
         }
     }
 
@@ -46,7 +46,7 @@ public class StartGame : MonoBehaviour
         {
             if (!launched)
             {
-                if (sceneToLoad == 1)
+                if (sceneToLoad == "Combat")
                 {
                     StartCoroutine(LoadCombat());
                 }
@@ -59,7 +59,7 @@ public class StartGame : MonoBehaviour
         }
     }
 
-    IEnumerator LoadAsynchronouslyZone(int zoneNumber)
+    IEnumerator LoadAsynchronouslyZone(string zoneNumber)
     {
         touchToStart.enabled = false;
         sliderGO.SetActive(true);

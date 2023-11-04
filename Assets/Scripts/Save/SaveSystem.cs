@@ -16,7 +16,7 @@ public class SaveSystem : MonoBehaviour
     /**
      * Effectue toute la logique liée à de nouvelles valeurs à sauvegarder sur une zone d'exploration
      */
-    public void SaveData(int previousScene, Vector3 player, string enemyName, int enemyLevel, GameObject[] allEnemies)
+    public void SaveData(string previousScene, Vector3 player, string enemyName, int enemyLevel, GameObject[] allEnemies)
     {
         // Transformation des données des ennemis pour le Json
         List<SavedEnemyData> tempList = new List<SavedEnemyData>();
@@ -35,7 +35,7 @@ public class SaveSystem : MonoBehaviour
 
         currentSave = new SavedData
         {
-            actualScene = SceneManager.GetActiveScene().buildIndex,
+            actualScene = SceneManager.GetActiveScene().name,
             previousScene = previousScene,
             playerPosx = player.x,
             playerPosy = player.y,
@@ -53,7 +53,7 @@ public class SaveSystem : MonoBehaviour
      */
     public void SaveGame()
     {
-        currentSave.actualScene = SceneManager.GetActiveScene().buildIndex;
+        currentSave.actualScene = SceneManager.GetActiveScene().name;
         string jsonData = JsonUtility.ToJson(currentSave);
         string filePath = Application.persistentDataPath + "/SavedData.json";
         System.IO.File.WriteAllText(filePath, jsonData);
@@ -101,8 +101,8 @@ public class SaveSystem : MonoBehaviour
 public class SavedData
 {
     // Scene informations
-    public int actualScene;
-    public int previousScene;
+    public string actualScene;
+    public string previousScene;
 
     // Player informations
     public float playerPosx;

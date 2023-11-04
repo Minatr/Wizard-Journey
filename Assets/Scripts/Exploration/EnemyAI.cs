@@ -44,10 +44,10 @@ public class EnemyAI : MonoBehaviour
         playerANI = player.GetComponentInChildren<Animator>();
         enemyRB = transform.GetComponent<Rigidbody>();
         enemyNMA = transform.GetComponent<NavMeshAgent>();
-        levelLoader = GameObject.Find("GameManager").GetComponent<LevelLoader>();
+        levelLoader = GameObject.Find("GameManagerZone").GetComponent<LevelLoader>();
 
         // On définit les niveaux des ennemis à chaque fois que la zone est nouvelle
-        if (SaveSystem.currentSave == null || SaveSystem.currentSave.previousScene != 1)
+        if (SaveSystem.currentSave == null || SaveSystem.currentSave.previousScene != "Combat")
         {
             ChangeLevel(Random.Range(1, 11));
         }

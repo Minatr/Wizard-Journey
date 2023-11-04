@@ -18,7 +18,7 @@ public class SpawnerEnemy : MonoBehaviour
         SavedData savedData = SaveSystem.currentSave;
 
         // On va regarder si on vient d'une autre zone ou non : si ce n'est pas le cas, on créé de nouveaux ennemis, sinon ça veut dire qu'on était en combat ou déconnecté, dans ces cas là on récupère ceux déjà créés auparavant
-        if (savedData != null && savedData.previousScene == 1)
+        if (savedData != null && savedData.previousScene == "Combat")
         {
             foreach (SavedEnemyData savedEnemyData in savedData.enemyDataList)
             {
