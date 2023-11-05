@@ -3,7 +3,7 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.1.2](#version-012-)  |  16/10/2023 |
+| [0.1.3](#version-013-)  |  04/11/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
@@ -12,6 +12,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 | Version | What's new | Improvements | Date |
 | :-----: | ---------- | ------------ | :--: |
+| [0.1.3](#version-013-) | <ul><li> Magic attack __Animation__ </li><li> Second basic exploration __Scene/Zone__ </li><li> Fast __travel__ between zones </li></ul> | <ul><li> Save System (functional __optimizations__) </li></ul> | 04/11/2023 |
 | [0.1.2](#version-012-) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
 | [0.1.1](#version-011-) | <ul><li> Welcome Scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
 | [0.1.0](#version-010-) | <ul><li> __Fight__ system (zone, animations, visuals, ...) </li></ul> | | 16/09/2023 |
@@ -98,5 +99,17 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 &emsp; This update is a little fix and improvement of the last version that added an efficient but incomplete save system. Now, after having upgraded and transformed the SaveSystem in a singleton (as I'm currently learning design patterns, why not using them when it's possible to), the game remember all the ennemies on the map and their position. If you kill one or if one beats you, he disappears from the area. The map creates new enemies if you leave to another area and come back (the fight area doesn't count). Unfortunately, they are no other area for now, that may be one of the next step ...
 
 
+### <h3 id="0.1.3">Version 0.1.3 :</h3>
+
+&emsp; I wanted to add some fun to the fight. That's good cause I had to make the magic attack animation since I created the fight system. I followed a great [tutorial](https://youtu.be/o1EunoF-11c?si=eiMnaGNOXbwQzNZ7) to get some help and inspiration with the unity particle system (which is quite scary when you don't know everything about it). It allowed me to have this result that I appreciate a lot :
+
+![magic_attack_GIF](/ReadmeAssets/lightning_GIF.gif)
+
+> The build on phone is unfortunately quite laggy, I'll have to find out what would cause that and try to fix it. Internet and forums say that optimization is a huge battle during mobile dev process. I won't escape it. 
+
+&emsp; With this come a new zone working like the first exploring zone. So I implemented a sign wich allow you to fast travel from zone to zone (no visual yet), and improved at the same time how worked the save system : I was using Scene index, and now I'm using Scene name (easier to use and safier).
+
+![far from_the sign](/ReadmeAssets/sign_far.jpg)
+![close to_the sign](/ReadmeAssets/sign_near.jpg)
 
 
