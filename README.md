@@ -107,7 +107,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 > The build on phone is unfortunately quite laggy, I'll have to find out what would cause that and try to fix it. Internet and forums say that optimization is a huge battle during mobile dev process. I won't escape it. 
 
-&emsp; With this come a new zone working like the first exploring zone. So I implemented a sign wich allow you to fast travel from zone to zone (no visual yet), and improved at the same time how worked the save system : I was using Scene index, and now I'm using Scene name (easier to use and safier).
+&emsp; With this come a new zone working like the first exploring zone. Actually, if you want to change the current zone monster (if you don't like their level or rarity, or if you've already killed all of them), you need to leave the zone and come back. So I implemented a sign wich allow you to fast travel from zone to zone (no visual yet), and improved at the same time how worked the save system : I was using Scene index, and now I'm using Scene name (easier to use and safier).
 
 ![far from_the sign](/ReadmeAssets/sign_far.jpg)
 ![close to_the sign](/ReadmeAssets/sign_near.jpg)
