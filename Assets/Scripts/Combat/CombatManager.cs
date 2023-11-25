@@ -227,7 +227,6 @@ public class CombatManager : MonoBehaviour
         buttonMagic.GetComponent<Button>().enabled = false;
         animatorTextDamageEnemy.ResetTrigger("Damage");
 
-
         // S'il s'agit d'une attaque au corps à corps
         if (!magic)
         {
@@ -289,11 +288,15 @@ public class CombatManager : MonoBehaviour
             manaCostText.text = "-2";
             manaCostAnimator.SetTrigger("mana");
             RemoveMana(2);
-            yield return new WaitForSeconds(0.4f);
-            manaCostAnimator.ResetTrigger("mana");
-            
-            canvasPlayer.SetActive(false);
+            yield return new WaitForSeconds(0.39f);
             spellWheelAnimator.SetTrigger("desactiveSpellWheel");
+            yield return new WaitForSeconds(0.01f);
+            manaCostAnimator.ResetTrigger("mana");
+
+            buttonMagic.SetActive(true);
+            buttonAttack.SetActive(true);
+
+            canvasPlayer.SetActive(false);
 
             // Lancement de l'attaque
             animatorPlayer.SetTrigger("Magic");
