@@ -114,7 +114,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 ![close to_the sign](/ReadmeAssets/sign_near.jpg)
 
 
-### <h3 id="0.1.3">Version 0.1.3 :</h3>
+### <h3 id="0.1.4">Version 0.1.4 :</h3>
 
 &emsp; Very little update here : I just added a simple spell wheel cause i wanna add other spells. It wasn't that fun to code but it was necessary for the incoming updates.
 
