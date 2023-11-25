@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +23,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private GameObject buttonAttack;
     [SerializeField] private GameObject buttonMagic;
+    [SerializeField] private Animator spellWheelAnimator;
     [SerializeField] private Animator animatorTextDamagePlayer;
     [SerializeField] private TextMeshProUGUI textDamagePlayer;
     [SerializeField] private float attackDamage;
@@ -98,7 +98,21 @@ public class CombatManager : MonoBehaviour
     {
         StartCoroutine(PlayerTurn(true));
     }
-    
+
+    public void activeSpellWheel()
+    {
+        buttonMagic.SetActive(false);
+        buttonAttack.SetActive(false);
+        spellWheelAnimator.SetTrigger("activeSpellWheel");
+    }
+
+    public void desactiveSpellWheel()
+    {
+        spellWheelAnimator.SetTrigger("desactiveSpellWheel");
+        buttonMagic.SetActive(true);
+        buttonAttack.SetActive(true);
+    }
+
     private void RemoveEnemyHealth(bool magic)
     {
         if (magic)
@@ -213,6 +227,7 @@ public class CombatManager : MonoBehaviour
         buttonMagic.GetComponent<Button>().enabled = false;
         animatorTextDamageEnemy.ResetTrigger("Damage");
 
+
         // S'il s'agit d'une attaque au corps à corps
         if (!magic)
         {
@@ -278,6 +293,7 @@ public class CombatManager : MonoBehaviour
             manaCostAnimator.ResetTrigger("mana");
             
             canvasPlayer.SetActive(false);
+            spellWheelAnimator.SetTrigger("desactiveSpellWheel");
 
             // Lancement de l'attaque
             animatorPlayer.SetTrigger("Magic");
