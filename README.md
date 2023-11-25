@@ -3,7 +3,7 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.1.3](#version-013-)  |  04/11/2023 |
+| [0.1.4](#version-014-)  |  24/11/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
@@ -12,6 +12,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 | Version | What's new | Improvements | Date |
 | :-----: | ---------- | ------------ | :--: |
+| [0.1.4](#version-014-) | <ul><li> __Spell__ Wheel (animations, visuals) </li></ul> | | 24/11/2023 |
 | [0.1.3](#version-013-) | <ul><li> Magic attack __Animation__ </li><li> Second basic exploration __Scene/Zone__ </li><li> Fast __travel__ between zones </li></ul> | <ul><li> Save System (functional __optimizations__) </li></ul> | 04/11/2023 |
 | [0.1.2](#version-012-) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
 | [0.1.1](#version-011-) | <ul><li> Welcome Scene </li><li> __Save__ system (player position, actual scene, enemy, ...)</li></ul> | <ul><li> __UI__ </li><li>New __Font__ </li></ul> | 11/10/2023 |
@@ -111,5 +112,13 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 ![far from_the sign](/ReadmeAssets/sign_far.jpg)
 ![close to_the sign](/ReadmeAssets/sign_near.jpg)
+
+
+### <h3 id="0.1.3">Version 0.1.3 :</h3>
+
+&emsp; Very little update here : I just added a simple spell wheel cause i wanna add other spells. It wasn't that fun to code but it was necessary for the incoming updates.
+
+![spellWheel](/ReadmeAssets/spellWheel.png)
+
 
 
