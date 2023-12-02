@@ -3,7 +3,7 @@
 
 | Current Version | Last Update |
 | :-------------: | :---------: |
-| [0.1.4](#version-014-)  |  24/11/2023 |
+| [0.2.0](#version-020-)  |  02/12/2023 |
 
 Click [here](https://drive.google.com/drive/folders/1f4IrIE74F7613GIdeKUhKwHYmx5zdhfh?usp=sharing) to download the game.  
 Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3E1Q5K?usp=sharing) to dowload oldest versions.
@@ -12,6 +12,7 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 
 | Version | What's new | Improvements | Date |
 | :-----: | ---------- | ------------ | :--: |
+| [0.2.0](#version-020-) | <ul><li> __Change__ offensive Spell </li><li> Exploration zone __UI__ (__Shop__ and __Spell__ choose menu) </li><li> __Pause__ Menu during fight </li></ul> | <ul><li> Spell Wheel (visuals and fonctionals __optimizations__ </li><li> Add spell int the __Save System__ </li></ul> | 02/12/2023 |
 | [0.1.4](#version-014-) | <ul><li> __Spell__ Wheel (animations, visuals) </li></ul> | | 24/11/2023 |
 | [0.1.3](#version-013-) | <ul><li> Magic attack __Animation__ </li><li> Second basic exploration __Scene/Zone__ </li><li> Fast __travel__ between zones </li></ul> | <ul><li> Save System (functional __optimizations__) </li></ul> | 04/11/2023 |
 | [0.1.2](#version-012-) | | <ul><li> Save system (__enemies positions__) </li></ul> | 16/10/2023 |
@@ -119,6 +120,31 @@ Click [here](https://drive.google.com/drive/folders/1qk0YfYEGQyMGLkgiDCKypP7GYX3
 &emsp; Very little update here : I just added a simple spell wheel cause i wanna add other spells. It wasn't that fun to code but it was necessary for the incoming updates.
 
 ![spellWheel](/ReadmeAssets/spellWheel.png)
+
+
+### <h3 id="0.2.0">Version 0.2.0 :</h3>
+
+&emsp; Here is quite a huge update. I've added and improved some UI in the game : 
+- the exploration UI
+- spell selection
+- shop menu (empty actually)
+- spell wheel (improved)
+- pause menu while fighting
+
+![new_exploration_UI](/ReadmeAssets/exploration_UI.png)
+![spell_Menu](/ReadmeAssets/spellMenu.png)
+![shop_Menu](/ReadmeAssets/shopMenu.png)
+![new_spell_wheel](/ReadmeAssets/newSpellWheel.png)
+![pause_menu](/ReadmeAssets/pauseMenu.png)
+![give_up_Menu](/ReadmeAssets/giveupMenu.png)
+
+&emsp; With it come a lot of code which just wait the next spell animations. Just made the backend of the offensive spell system, now it remains to do the same with the utility spells and all the animations. Some very funny tasks.
+
+
+
+
+
+
 
 
 
