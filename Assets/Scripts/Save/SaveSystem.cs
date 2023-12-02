@@ -16,7 +16,7 @@ public class SaveSystem : MonoBehaviour
     /**
      * Effectue toute la logique liée à de nouvelles valeurs à sauvegarder sur une zone d'exploration
      */
-    public void SaveData(string previousScene, Vector3 player, string enemyName, int enemyLevel, GameObject[] allEnemies)
+    public void SaveData(string previousScene, Vector3 player, int playerManaMax, SpellSave spellSave, string enemyName, int enemyLevel, GameObject[] allEnemies)
     {
         // Transformation des données des ennemis pour le Json
         List<SavedEnemyData> tempList = new List<SavedEnemyData>();
@@ -35,14 +35,17 @@ public class SaveSystem : MonoBehaviour
 
         currentSave = new SavedData
         {
+            version = Application.version,
             actualScene = SceneManager.GetActiveScene().name,
             previousScene = previousScene,
             playerPosx = player.x,
             playerPosy = player.y,
             playerPosz = player.z,
+            playerManaMax = playerManaMax,
+            spellSave = spellSave,
             enemyName = enemyName,
             enemyLevel = enemyLevel,
-            enemyDataList = tempList
+            enemyDataList = tempList,
         };
 
         SaveGame();
@@ -53,10 +56,21 @@ public class SaveSystem : MonoBehaviour
      */
     public void SaveGame()
     {
+        currentSave.version = Application.version;
         currentSave.actualScene = SceneManager.GetActiveScene().name;
         string jsonData = JsonUtility.ToJson(currentSave);
         string filePath = Application.persistentDataPath + "/SavedData.json";
         System.IO.File.WriteAllText(filePath, jsonData);
+    }
+
+    public void DeleteSaveFile()
+    {
+        string filePath = Application.persistentDataPath + "/SavedData.json";
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
     }
 
 
@@ -100,6 +114,9 @@ public class SaveSystem : MonoBehaviour
 
 public class SavedData
 {
+    // Game informations
+    public string version;
+
     // Scene informations
     public string actualScene;
     public string previousScene;
@@ -108,6 +125,8 @@ public class SavedData
     public float playerPosx;
     public float playerPosy;
     public float playerPosz;
+    public int playerManaMax;
+    public SpellSave spellSave;
 
     // Enemy informations
     public string enemyName;
@@ -124,4 +143,34 @@ public class SavedEnemyData
     public float posy;
     public float posz;
     public bool attacking;
+}
+
+[System.Serializable]
+public class SpellSave
+{
+    public string currentOffensiveSpell;
+    public string currentUtilitySpell;
+    public Dictionary<string, SpellType> spellTypes;
+
+    public SpellSave(string currentOffensiveSpell, string currentUtilitySpell, Dictionary<string, SpellType> spellTypes)
+    {
+        this.currentOffensiveSpell = currentOffensiveSpell;
+        this.currentUtilitySpell = currentUtilitySpell;
+        this.spellTypes = spellTypes;
+    }
+}
+
+[System.Serializable]
+public class SpellType
+{
+    public int level;
+    public int cost;
+    public int damage;
+
+    public SpellType(int level, int cost, int damage)
+    {
+        this.level = level;
+        this.cost = cost;
+        this.damage = damage;
+    }
 }

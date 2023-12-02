@@ -6,6 +6,7 @@ public class AutoSave : MonoBehaviour
 {
     [Header("REFERENCES")]
     [SerializeField] private Transform player;
+    [SerializeField] private GestionSpell gestionSpell;
 
     void Start()
     {
@@ -17,7 +18,26 @@ public class AutoSave : MonoBehaviour
         }
         else
         {
-            SaveSystem.instance.SaveData("", player.position, "", 0, SaveSystem.instance.getAllEnemies());
+            SaveSystem.instance.SaveData(
+                "",
+                player.position,
+                3,
+                new SpellSave("lightning", "shield", new Dictionary<string, SpellType> 
+                    { 
+                        {"lightning", new SpellType(1, 3, 60)},
+                        {"fire", new SpellType(0, 2, 40)},
+                        {"ice", new SpellType(0, 2, 30)},
+                        {"shield", new SpellType(1, 1, 30)},
+                        {"heal", new SpellType(0, 2, 60)},
+                        {"buffAttack", new SpellType(0, 1, 50)}
+                    }
+                ),
+                "",
+                0,
+                SaveSystem.instance.getAllEnemies()
+            );
+            // On initialise les sorts pour la scène depuis cet endroit s'il n'y avait pas de sauvegarde existante
+            gestionSpell.InitSpells();
         }
 
         StartCoroutine(autoSave());
@@ -27,7 +47,7 @@ public class AutoSave : MonoBehaviour
     {
         while (true)
         {
-            SaveSystem.instance.SaveData(SaveSystem.currentSave.previousScene, player.position, "", 0, SaveSystem.instance.getAllEnemies());
+            SaveSystem.instance.SaveData(SaveSystem.currentSave.previousScene, player.position, 3, SaveSystem.currentSave.spellSave, "", 0, SaveSystem.instance.getAllEnemies());
             yield return new WaitForSeconds(30f);
         }
     }

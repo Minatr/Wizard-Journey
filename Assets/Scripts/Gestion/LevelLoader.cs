@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
         if (!isLaunching)
         {
             enemyAI.attacking = true;
-            SaveSystem.instance.SaveData(SceneManager.GetActiveScene().name, player.position, enemyAI.enemyName, enemyAI.enemyLevel, SaveSystem.instance.getAllEnemies());
+            SaveSystem.instance.SaveData(SceneManager.GetActiveScene().name, player.position, 3, SaveSystem.currentSave.spellSave, enemyAI.enemyName, enemyAI.enemyLevel, SaveSystem.instance.getAllEnemies());
             StartCoroutine(LoadAsynchronouslyCombat());
             isLaunching = true;
         }
@@ -54,8 +54,9 @@ public class LevelLoader : MonoBehaviour
         }
     }
     
-    public void LoadZone(string zoneName)
+    public void LoadZone(string zoneName) // Si zoneName est vide, c'est que la fonction est appelée depuis un combat, elle charge alors la zone précédente
     {
+        Time.timeScale = 1; // Si l'appel vient du menu pause du combat, on sera en timeScale de 0.
         SaveSystem.instance.SaveGame();
         if (zoneName == "")
         {

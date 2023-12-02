@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1124739892894058125}
   - component: {fileID: 8600642219891551304}
   - component: {fileID: 3787602063248322867}
+  - component: {fileID: 8277387954809283342}
+  - component: {fileID: 3734602108615768377}
   m_Layer: 0
   m_Name: GameManagerZone
   m_TagString: Untagged
@@ -93,3 +95,45 @@ MonoBehaviour:
     maxZ: 30
   werewolfPrefab: {fileID: 5706167118148253739, guid: 0b361ec3732dcde4a80842b7d5afea37,
     type: 3}
+--- !u!114 &8277387954809283342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769003177185175081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9a78ec3ce06bf4d8a917bcb0579d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3734602108615768377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769003177185175081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f697c98e53a8f754ebcffb80c4e8b2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageSelectedSpell: {fileID: 0}
+  iceSprite: {fileID: 21300000, guid: 178faf4b2f5eeeb41911829abdf03981, type: 3}
+  fireSprite: {fileID: 21300000, guid: ff61736d33467274ebb62d0a14af0495, type: 3}
+  lightningSprite: {fileID: 21300000, guid: cf744b341fc623f4d9f0edf3ad9ba2ab, type: 3}
+  activatedButton: {fileID: 21300000, guid: 0ae9668be981df70bb2f5c7b4cc46b18, type: 3}
+  desactivatedButton: {fileID: 21300000, guid: 00ed6944fe597beb3aa97f89a43c91f7, type: 3}
+  nameSelectedSpell: {fileID: 0}
+  textDamageSelectedSpell: {fileID: 0}
+  manaCostSelectedSpell: {fileID: 0}
+  textDamageIceSpell: {fileID: 0}
+  manaCostIceSpell: {fileID: 0}
+  iceSpellButton: {fileID: 0}
+  textDamageFireSpell: {fileID: 0}
+  manaCostFireSpell: {fileID: 0}
+  fireSpellButton: {fileID: 0}
+  textDamageLightningSpell: {fileID: 0}
+  manaCostLightningSpell: {fileID: 0}
+  lightningSpellButton: {fileID: 0}

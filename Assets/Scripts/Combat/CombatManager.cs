@@ -23,12 +23,26 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private GameObject buttonAttack;
     [SerializeField] private GameObject buttonMagic;
-    [SerializeField] private Animator spellWheelAnimator;
     [SerializeField] private Animator animatorTextDamagePlayer;
     [SerializeField] private TextMeshProUGUI textDamagePlayer;
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float magicDamage;
     [SerializeField] private ParticleSystem particleSystemLightning;
+
+    [Header("SPELL REFERENCES")]
+    [SerializeField] private Animator spellWheelAnimator;
+    [SerializeField] private GameObject buttonOffensiveSpell;
+    [SerializeField] private GameObject buttonUtilitySpell;
+    [SerializeField] private Image imageOffensiveSpell;
+    [SerializeField] private Image imageUtilitySpell;
+    [SerializeField] private Sprite lightningSpell;
+    [SerializeField] private Sprite fireSpell;
+    [SerializeField] private Sprite iceSpell;
+    [SerializeField] private Sprite shieldSpell;
+    [SerializeField] private Sprite healSpell;
+    [SerializeField] private Sprite buffAttackSpell;
+    [SerializeField] private TextMeshProUGUI offensiveSpellCostText;
+    [SerializeField] private TextMeshProUGUI utilitySpellCostText;
+    private int offensiveSpellCost;
+    private int utilitySpellCost;
 
     [Header("ENEMY REFERENCES")]
     [SerializeField] private Slider sliderVieEnnemi;
@@ -61,6 +75,7 @@ public class CombatManager : MonoBehaviour
         SavedData savedData = SaveSystem.currentSave;
         SaveSystem.instance.SaveGame();
 
+        /* ----- Gestion du chargement de l'ennemi ----- */
         textEnemyLevel.text = savedData.enemyLevel.ToString();
 
         switch (savedData.enemyName)
@@ -71,12 +86,10 @@ public class CombatManager : MonoBehaviour
                 enemy = werewolf;
                 textEnemyName.text = "LOUP-GAROU";
                 break;
+        }
 
-            default:
-                break;
-        }        
-
-        currentMana = 3;
+        /* ----- Gestion de l'initialisation du mana ----- */
+        currentMana = SaveSystem.currentSave.playerManaMax;
         maxMana = currentMana;
 
         // On peuple le nombre de unité de mana dans la barre en fonction du mana max du joueur
@@ -86,24 +99,68 @@ public class CombatManager : MonoBehaviour
             instantiatedPrefab.transform.SetParent(manaContent.transform, false);
         }
 
+        /* ----- Gestion du chargement des spells offensifs ----- */
+        switch (savedData.spellSave.currentOffensiveSpell)
+        {
+            case "lightning":
+                imageOffensiveSpell.sprite = lightningSpell;
+                offensiveSpellCostText.text = savedData.spellSave.spellTypes["lightning"].cost.ToString();
+                offensiveSpellCost = savedData.spellSave.spellTypes["lightning"].cost;
+                break;
+            case "fire":
+                imageOffensiveSpell.sprite = fireSpell;
+                offensiveSpellCostText.text = savedData.spellSave.spellTypes["fire"].cost.ToString();
+                offensiveSpellCost = savedData.spellSave.spellTypes["fire"].cost;
+                break;
+            case "ice":
+                imageOffensiveSpell.sprite = iceSpell;
+                offensiveSpellCostText.text = savedData.spellSave.spellTypes["ice"].cost.ToString();
+                offensiveSpellCost = savedData.spellSave.spellTypes["ice"].cost;
+                break;
+        }
+
+        /* ----- Gestion du chargement des spells utilitaires ----- */
+        switch (savedData.spellSave.currentUtilitySpell)
+        {
+            case "shield":
+                imageUtilitySpell.sprite = shieldSpell;
+                utilitySpellCostText.text = savedData.spellSave.spellTypes["shield"].cost.ToString();
+                utilitySpellCost = savedData.spellSave.spellTypes["shield"].cost;
+                break;
+            case "heal":
+                imageUtilitySpell.sprite = healSpell;
+                utilitySpellCostText.text = savedData.spellSave.spellTypes["heal"].cost.ToString();
+                utilitySpellCost = savedData.spellSave.spellTypes["heal"].cost;
+                break;
+            case "buffAttack":
+                imageUtilitySpell.sprite = buffAttackSpell;
+                utilitySpellCostText.text = savedData.spellSave.spellTypes["buffAttack"].cost.ToString();
+                utilitySpellCost = savedData.spellSave.spellTypes["buffAttack"].cost;
+                break;
+            
+        }
+
         chrono = Time.time;
     }
 
     public void PlayerAttack()
     {
-        StartCoroutine(PlayerTurn(false));
+        StartCoroutine(PlayerTurn(false, ""));
     }
 
-    public void PlayerMagic()
+    public void PlayerMagic(string spellType)
     {
-        StartCoroutine(PlayerTurn(true));
+        StartCoroutine(PlayerTurn(true, spellType));
     }
 
     public void activeSpellWheel()
     {
         buttonMagic.SetActive(false);
         buttonAttack.SetActive(false);
-        spellWheelAnimator.SetTrigger("activeSpellWheel");
+        if (currentMana >= offensiveSpellCost && currentMana >= utilitySpellCost) spellWheelAnimator.SetTrigger("activeSpellWheel_BothON");
+        else if (currentMana >= offensiveSpellCost && currentMana < utilitySpellCost) spellWheelAnimator.SetTrigger("activeSpellWheel_TopON");
+        else if (currentMana < offensiveSpellCost && currentMana >= utilitySpellCost) spellWheelAnimator.SetTrigger("activeSpellWheel_BottomON");
+        else spellWheelAnimator.SetTrigger("activeSpellWheel_BothOFF");
     }
 
     public void desactiveSpellWheel()
@@ -113,17 +170,8 @@ public class CombatManager : MonoBehaviour
         buttonAttack.SetActive(true);
     }
 
-    private void RemoveEnemyHealth(bool magic)
+    private void RemoveEnemyHealth(int damages)
     {
-        if (magic)
-        {
-            damages = magicDamage;
-        }
-        else
-        {
-            damages = attackDamage;
-        }
-
         textDamageEnemy.text = "- " + damages;
         animatorTextDamageEnemy.SetTrigger("Damage");
 
@@ -203,7 +251,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private void FinCombat(bool win)
+    public void FinCombat(bool win)
     {
         chrono = Time.time - chrono;
         int minute = Mathf.FloorToInt(chrono / 60);
@@ -221,11 +269,11 @@ public class CombatManager : MonoBehaviour
         }
     }
     
-    private IEnumerator PlayerTurn(bool magic)
+    private IEnumerator PlayerTurn(bool magic, string spellType)
     {
-        buttonAttack.GetComponent<Button>().enabled = false;
-        buttonMagic.GetComponent<Button>().enabled = false;
         animatorTextDamageEnemy.ResetTrigger("Damage");
+        buttonOffensiveSpell.GetComponent<Button>().enabled = false;
+        buttonUtilitySpell.GetComponent<Button>().enabled = false;
 
         // S'il s'agit d'une attaque au corps à corps
         if (!magic)
@@ -254,7 +302,7 @@ public class CombatManager : MonoBehaviour
 
             yield return new WaitForSeconds(1.2f);
 
-            RemoveEnemyHealth(magic);
+            RemoveEnemyHealth(20);
 
             enemyAnimator.SetBool("Hurt", true);
 
@@ -284,10 +332,11 @@ public class CombatManager : MonoBehaviour
         // S'il s'agit d'une attaque à distance
         else
         {
+            int manaToConsume = spellType == "offensif" ? offensiveSpellCost : utilitySpellCost;
             // Animation de consommation de mana
-            manaCostText.text = "-2";
+            manaCostText.text = "-" + manaToConsume;
             manaCostAnimator.SetTrigger("mana");
-            RemoveMana(2);
+            RemoveMana(manaToConsume);
             yield return new WaitForSeconds(0.39f);
             spellWheelAnimator.SetTrigger("desactiveSpellWheel");
             yield return new WaitForSeconds(0.01f);
@@ -298,21 +347,50 @@ public class CombatManager : MonoBehaviour
 
             canvasPlayer.SetActive(false);
 
-            // Lancement de l'attaque
-            animatorPlayer.SetTrigger("Magic");
-            yield return new WaitForSeconds(1);
+            // Lancement du sort
+            if (spellType == "offensif")
+            {
+                if (SaveSystem.currentSave.spellSave.currentOffensiveSpell == "lightning")
+                {
+                    animatorPlayer.SetTrigger("Magic");
+                    yield return new WaitForSeconds(1);
 
-            particleSystemLightning.Play();
-            yield return new WaitForSeconds(0.1f);
-            enemyAnimator.SetBool("Hurt", true);
-            yield return new WaitForSeconds(1.8f);
-            particleSystemLightning.Stop();
-            yield return new WaitForSeconds(0.2f);
+                    particleSystemLightning.Play();
+                    yield return new WaitForSeconds(0.1f);
+                    enemyAnimator.SetBool("Hurt", true);
+                    yield return new WaitForSeconds(1.8f);
+                    particleSystemLightning.Stop();
+                    yield return new WaitForSeconds(0.2f);
 
-            RemoveEnemyHealth(magic);
-            yield return new WaitForSeconds(0.2f);
-            enemyAnimator.SetBool("Hurt", false);
-            yield return new WaitForSeconds(0.3f);
+                    RemoveEnemyHealth(SaveSystem.currentSave.spellSave.spellTypes["lightning"].damage);
+                    yield return new WaitForSeconds(0.2f);
+                    enemyAnimator.SetBool("Hurt", false);
+                    yield return new WaitForSeconds(0.3f);
+                }
+                else if (SaveSystem.currentSave.spellSave.currentOffensiveSpell == "fire")
+                {
+
+                }
+                else if (SaveSystem.currentSave.spellSave.currentOffensiveSpell == "ice")
+                {
+
+                }
+            } 
+            else
+            {
+                if (SaveSystem.currentSave.spellSave.currentUtilitySpell == "shield")
+                {
+
+                }
+                else if (SaveSystem.currentSave.spellSave.currentUtilitySpell == "heal")
+                {
+
+                }
+                else if (SaveSystem.currentSave.spellSave.currentUtilitySpell == "buffAttack")
+                {
+
+                }
+            }
         }
 
         if (sliderVieEnnemi.value == 0f)
@@ -383,40 +461,41 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            // On réactive les différents éléments d'UI
-            if (currentMana < 2)
-            {
-                // On désactive le bouton de magie si le joueur n'a pas assez de mana pour lancer un sort
-                buttonMagic.GetComponent<Button>().enabled = false;
-                Image imageComponent = buttonMagic.GetComponent<Image>();
-                Color newColor = imageComponent.color;
-                newColor.a = 0.2f;
-                imageComponent.color = newColor;
-            }
+            // On réactive ou désactive les différents éléments d'UI en fonction du mana restant
             canvasPlayer.SetActive(true);
 
+            // Ajout de mana si le joueur n'a pas fait de magie
             if (!magic && currentMana < maxMana)
             {
                 AddMana();
                 manaCostText.text = "+1";
                 manaCostAnimator.SetTrigger("mana");
 
-                if (currentMana >= 2)
-                {
-                    // On réactive le bouton magie si le joueur a récupéré assez de mana
-                    buttonMagic.GetComponent<Button>().enabled = true;
-                    Image imageComponent = buttonMagic.GetComponent<Image>();
-                    Color newColor = imageComponent.color;
-                    newColor.a = 1f;
-                    imageComponent.color = newColor;
-                }
-
                 yield return new WaitForSeconds(0.4f);
                 manaCostAnimator.ResetTrigger("mana");
             }
 
-            buttonAttack.GetComponent<Button>().enabled = true;
-            if (currentMana >= 2) buttonMagic.GetComponent<Button>().enabled = true;
+            if (currentMana < offensiveSpellCost)
+            {
+                // On désactive le bouton de sort offensif si le joueur n'a pas assez de mana pour le lancer
+                buttonOffensiveSpell.GetComponent<Button>().enabled = false;
+            }
+            else
+            {
+                // On réactive le bouton magie si le joueur a récupéré assez de mana
+                buttonOffensiveSpell.GetComponent<Button>().enabled = true;
+            }
+
+            if (currentMana < utilitySpellCost)
+            {
+                // On désactive le bouton de sort utilitaire si le joueur n'a pas assez de mana pour le lancer
+                buttonUtilitySpell.GetComponent<Button>().enabled = false;
+            }
+            else
+            {
+                // On réactive le bouton magie si le joueur a récupéré assez de mana
+                buttonUtilitySpell.GetComponent<Button>().enabled = true;
+            }
         }
 
         yield return null;
